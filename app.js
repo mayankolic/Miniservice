@@ -18,15 +18,11 @@ const axios = require('axios')
 const SCOPES = "https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/userinfo.profile";
 
 const oAuth2Client = new google.auth.OAuth2(
-    CLIENT_ID,
-    CLIENT_SECRET,
-    REDIRECT_URL
-  )
-  // const oAuth2Clientdb = new dropbox.auth.OAuth2(
-  //   CLIENT_IDDB = process.env.CLIENT_IDDB,
-  //   CLIENT_SECRETDB = process.env.CLIENT_SECRETDB,
-  //   REDIRECT_URLDB = process.env.REDIRECT_URIDB
-  // )
+  CLIENT_ID,
+  CLIENT_SECRET,
+  REDIRECT_URL
+)
+
 const clientId_db = 'sb7zzvuozoq5250';
 const clientSecret_db = '9bj080qyokm3by0';
 const redirectUrl_db = 'http://localhost:5000/callbacks';
@@ -78,34 +74,22 @@ var upload = multer({
 
 
 app.get('/', (req, res) => {
-  console.log("hdbccsjdv");
+  // console.log("hdbccsjdv");
   res.render('index');
-  // console.log(req.body)
-  //   // console.log(url);
 
-  //   res.render('index');
-  //   console.log(req.body);
 });
 
 app.get('/upload', (req, res) => {
-  // const choice = JSON.stringify(req.body);
-  // // console.log(choice.query);
-  // console.log(choice);
-  // // res.send("HYY their madarchod");
+
   choice = (req.query.query);
-  // console.log((req));
-  // console.log("HYY");
+
   if (authend == true) {
     choice = req.query.choice;
     console.log(req.query.choice);
   }
 
   var ans = true;
-  // const choice = (req.body.query);
-  // console.log(typeof(choice));
-  // console.log(url);
-  // const choice1 = "Google Drive";
-  // console.log(choi
+
   if (choice === 'Dropbox') {
     if (authend === false) {
 
@@ -130,8 +114,8 @@ app.get('/upload', (req, res) => {
         scope: SCOPES
       })
       console.log(url);
-      return res.send(url);
-      // res.render('index1', { url: url });
+      // return res.send(url);
+      res.render('index1', { url: url });
     } else {
       console.log("ho gaya !");
       var oauth2 = google.oauth2({
